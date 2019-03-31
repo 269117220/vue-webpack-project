@@ -1,12 +1,10 @@
 const path = require('path');
-const DIST_PATH = path.resolve(__dirname, '../../server/app/public');
+const DIST_PATH = path.resolve(__dirname, '../../server/app/public/js');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     entry: ['babel-polyfill', './src/pages/index.js'],
-    // devtool: 'inline-source-map',
     output: {
-        filename: 'js/bundle.js',
         path: DIST_PATH
     },
     module: {
@@ -26,6 +24,10 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file-loader'
             }
         ]
     },
@@ -35,7 +37,7 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            'vues': 'vue/dist/vue.esm.js'
+            'vue$': 'vue/dist/vue.esm.js'
         }
     }
 };
