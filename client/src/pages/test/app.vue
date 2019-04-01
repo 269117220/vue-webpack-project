@@ -18,23 +18,12 @@
 </template>
 
 <script>
-import getData from './util';
 
 export default {
-  name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js',
       visible: false
-    }
-  },
-  created() {
-    this.fetchData();
-  },
-  methods: {
-     async fetchData() {
-      const data = await getData();
-      this.msg = data;
     }
   }
 }

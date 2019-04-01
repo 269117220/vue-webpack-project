@@ -2,8 +2,9 @@ const path = require('path');
 const DIST_PATH = path.resolve(__dirname, '../../server/app/public/js');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
+
 module.exports = {
-    entry: ['babel-polyfill', './src/pages/index.js'],
+    entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')],
     output: {
         path: DIST_PATH
     },
