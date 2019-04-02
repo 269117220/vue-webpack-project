@@ -1,10 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 const DIST_PATH = path.resolve(__dirname, '../../server/app/public/js');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 
 module.exports = {
-    entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')],
+    entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, '../src/index.js')],
     output: {
         path: DIST_PATH
     },
@@ -34,7 +35,10 @@ module.exports = {
         ]
     },
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new webpack.ProvidePlugin({
+
+        })
     ],
     resolve: {
         extensions: ['.js', '.vue', '.json'],
