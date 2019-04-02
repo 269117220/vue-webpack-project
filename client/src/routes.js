@@ -1,9 +1,7 @@
-// import navMenu from './pages/common/navMenu';
-const Bar = { template: '<div>bar</div>' }
+import Home from './pages/home/index';
 // 2. 定义路由
 const routes = [
-  // { path: '/foo', component: navMenu },
-  { path: '/bar', component: Bar }
+  { path: '/', component: Home }
 ];
 
 export default routes;

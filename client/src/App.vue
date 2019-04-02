@@ -16,10 +16,11 @@
 
 <style scoped>
 .m-side-menu {
-  margin-left: 15px;
+  margin-left: 25px;
+  margin-top: 5%;
 }
 .container {
-    margin-right: 10px;
+    margin-right: 25px;
     background-color: #eee;
     min-height: calc(100% - 80px);
 }
