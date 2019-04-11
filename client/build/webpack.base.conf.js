@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const DIST_PATH = path.resolve(__dirname, '../../server/app/public/js');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CleanCSSPlugin = require("less-plugin-clean-css");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, '../src/index.js')],
@@ -42,10 +44,28 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname , '../src/template.html'),
+            filename: './../index.html',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: false,
+                removeAttributeQuotes: true
+            }
+        }),
+        new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({
 
         })
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                
+            }
+        }
+    },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {

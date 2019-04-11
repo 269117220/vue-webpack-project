@@ -4,7 +4,7 @@ const baseWebpackConfig = require('./webpack.base.conf');
 module.exports = merge(baseWebpackConfig, {
     mode: 'production',
     output: {
-        filename: 'bundle.js'
+        filename: 'bundle.[chunkhash:16].js'
     }
 });
 
