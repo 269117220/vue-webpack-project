@@ -17,6 +17,9 @@ npm i -S vue
 npm i -D vue-loader vue-template-compiler （`'vue$': 'vue/dist/vue.esm.js'`）
 
 ##webpack相关优化
+cross-env：设置环境变量
+***
+
 添加hash值
 ***
 
