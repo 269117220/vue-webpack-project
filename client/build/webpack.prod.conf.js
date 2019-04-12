@@ -2,11 +2,12 @@ const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
 const CleanCSSPlugin = require("less-plugin-clean-css");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const config = require('./config.js');
 
 const webpackConfig = merge(baseWebpackConfig, {
     mode: 'production',
+    devtool: config.build.devtool,
     module: {
         rules: [
             {
@@ -26,6 +27,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].css'
         })

@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const config = require('./config.js');
@@ -46,7 +46,6 @@ module.exports = {
                 removeAttributeQuotes: true
             }
         }),
-        // new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({
             'process.env.NODE_ENV': JSON.stringify(env)
         })

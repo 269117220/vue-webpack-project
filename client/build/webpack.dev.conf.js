@@ -7,6 +7,7 @@ const config = require('./config.js');
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
+    devtool: config.dev.devtool,
     module: {
         rules: [
             {
