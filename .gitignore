@@ -1,5 +1,5 @@
 node_modules/
-server/app/public/js
+server/app/public/
 server/run/
 server/coverage/
 *.log

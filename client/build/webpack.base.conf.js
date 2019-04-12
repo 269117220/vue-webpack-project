@@ -1,35 +1,27 @@
 const path = require('path');
 const webpack = require('webpack');
-const DIST_PATH = path.resolve(__dirname, '../../server/app/public/js');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const CleanCSSPlugin = require("less-plugin-clean-css");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const config = require('./config.js');
 
 module.exports = {
     entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, '../src/index.js')],
     output: {
-        path: DIST_PATH
+        path: config.build.assetsRoot,
+        filename: 'js/[name].[chunkhash:16].js',
+        chunkFilename: 'js/[id].js',
+        publicPath: process.env.NODE_ENV === 'production'
+            ? config.build.assetsPublicPath
+            : config.dev.assetsPublicPath
     },
     module: {
         rules: [
             {
                 test: /\.vue$/,
                 loader: "vue-loader"
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader', 
-                    {
-                        loader: 'less-loader', 
-                        options: {
-                            plugins: [
-                                new CleanCSSPlugin({ advanced: true })
-                            ]
-                        }
-                    }]
             },
             {
                 test: /\.js$/,
@@ -46,7 +38,7 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname , '../src/template.html'),
-            filename: './../index.html',
+            filename: './index.html',
             minify: {
                 removeComments: true,
                 collapseWhitespace: false,
@@ -59,6 +51,16 @@ module.exports = {
         })
     ],
     optimization: {
+        minimizer: [
+            new UglifyJSPlugin(),
+            new OptimizeCSSAssetsPlugin({
+                cssProcessorOptions: true
+                    ? {
+                        map: { inline: false }
+                    }
+                    : {}
+            })
+        ],
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
