@@ -6,7 +6,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const config = require('./config.js');
-console.log('...........', process.env.NODE_ENV);
+
+const env = process.env.NODE_ENV;
 module.exports = {
     entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, '../src/index.js')],
     output: {
@@ -47,7 +48,7 @@ module.exports = {
         }),
         // new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({
-
+            'process.env.NODE_ENV': JSON.stringify(env)
         })
     ],
     optimization: {
