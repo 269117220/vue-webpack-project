@@ -6,12 +6,12 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const config = require('./config.js');
-
+console.log('...........', process.env.NODE_ENV);
 module.exports = {
     entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, '../src/index.js')],
     output: {
         path: config.build.assetsRoot,
-        filename: 'js/[name].[chunkhash:16].js',
+        filename: 'js/[name].[hash].js',
         chunkFilename: 'js/[id].js',
         publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
@@ -45,7 +45,7 @@ module.exports = {
                 removeAttributeQuotes: true
             }
         }),
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new webpack.ProvidePlugin({
 
         })

@@ -2,14 +2,11 @@ const path = require('path');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
 const CleanCSSPlugin = require("less-plugin-clean-css");
-// const openPage = process.env.npm_config_entry ? proxy.rulesMap[process.env.npm_config_entry] : '';
 const webpack = require('webpack');
+const config = require('./config.js');
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
-    output: {
-        // publicPath: 'js/'
-    },
     module: {
         rules: [
             {
@@ -29,9 +26,9 @@ module.exports = merge(baseWebpackConfig, {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, '../../server/app/public/'),
+        contentBase: config.build.assetsRoot,
         historyApiFallback: true,
-        port: '8888',
+        port: '8889',
         overlay: true,
         hot: true,
         compress: true,
