@@ -20,12 +20,11 @@ export default {
     },
     methods: {
         getDate: function() {
-            // fetch('/news').then(res => {
-            //     return res.json();
-            // }).then(res => {
-            //     console.log(res, res.msg);
-            //     this.msg = res.msg;
-            // });
+            fetch('/api/news').then(res => {
+                return res.json();
+            }).then(res => {
+                this.msg = res.msg;
+            });
         },
     }
 }

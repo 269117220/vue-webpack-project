@@ -1,5 +1,11 @@
 module.exports = app => {
     const { router, controller } = app;
+    /**
+     * 页面路由
+     */
     router.get('/', controller.home.index);
-    router.get('/news', controller.news.list);
+    /**
+     * 异步接口路由
+     */
+    router.get('/api/news', controller.news.list);
 };

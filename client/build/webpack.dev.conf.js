@@ -4,6 +4,7 @@ const baseWebpackConfig = require('./webpack.base.conf');
 const CleanCSSPlugin = require("less-plugin-clean-css");
 const webpack = require('webpack');
 const config = require('./config.js');
+const proxy = require('../config/proxy-rules');
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
@@ -34,7 +35,7 @@ module.exports = merge(baseWebpackConfig, {
         hot: true,
         compress: true,
         open: true,
-        proxy: {}
+        proxy
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
