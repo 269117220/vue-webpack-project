@@ -30,7 +30,7 @@ module.exports = merge(baseWebpackConfig, {
     devServer: {
         contentBase: config.build.assetsRoot,
         historyApiFallback: true,
-        port: '8889',
+        port: config.dev.port,
         overlay: true,
         hot: true,
         compress: true,
