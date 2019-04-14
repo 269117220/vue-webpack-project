@@ -1,5 +1,7 @@
 #client
 
+## NPM
+npm-run-all：执行多个脚本（run-p dev:*）
 ## webpack
 npm i -D webpack webpack-cli
 npm i webpack-merge
