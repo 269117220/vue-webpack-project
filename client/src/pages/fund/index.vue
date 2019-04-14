@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a href="#/bar">{{msg}}</a>
+        {{JSON.stringify(list)}}
     </div>
 </template>
 
@@ -12,7 +12,7 @@
 export default {
     data: function() {
         return {
-            msg: 'home~'
+            list: []
         }
     },
     created: function() {
@@ -20,10 +20,10 @@ export default {
     },
     methods: {
         getDate: function() {
-            fetch('/api/news').then(res => {
+            fetch('/api/interest').then(res => {
                 return res.json();
             }).then(res => {
-                this.msg = res.msg;
+                this.list = res.list;
             });
         },
     }

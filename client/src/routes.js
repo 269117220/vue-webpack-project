@@ -1,9 +1,7 @@
-import Home from './pages/home/index';
-const Bar = { template: '<div>bar</div>' }
-// 2. 定义路由
+import Fund from './pages/fund/index';
+
 const routes = [
-  { path: '/home', component: Home },
-  { path: '/bar', component: Bar }
+  { path: '/fund', component: Fund }
 ];
 
 export default routes;

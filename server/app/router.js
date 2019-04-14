@@ -7,5 +7,5 @@ module.exports = app => {
     /**
      * 异步接口路由
      */
-    router.get('/api/news', controller.news.list);
+    router.get('/api/interest', controller.interest.fund);
 };
