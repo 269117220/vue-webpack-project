@@ -7,5 +7,10 @@ class interestController extends Controller {
         ctx.body = JSON.stringify(fundList);
         
     }
+    async currFundValues() {
+        const  { ctx, service } = this;
+        const currFundValues = await service.interest.getCurrFundValues();
+        ctx.body = JSON.stringify(currFundValues);
+    }
 }
 module.exports = interestController;
