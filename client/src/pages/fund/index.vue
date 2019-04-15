@@ -17,9 +17,9 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="gszzl"
+        prop="oldValues"
         sortable
-        label="昨日增长率">
+        label="历史增长率">
       </el-table-column>
       <el-table-column
         prop="currValue"
@@ -48,7 +48,6 @@ export default {
     },
     created: function() {
         this.getDate();
-        this.getCurrFundValues();
     },
     methods: {
         tableRowClassName({row, rowIndex}) {
@@ -58,13 +57,14 @@ export default {
             fetch('/api/interest/currFundValue').then(res => {
                 return res.json();
             }).then(res => {
-                this.list && this.list.map((item = {}) => {
+                this.list = this.list && this.list.map((item = {}) => {
                     res.some(_curItem => {
                         if(_curItem.fundcode == item.fundcode) {
                             item.currValue = _curItem.gszzl;
                             return true;
                         }
                     });
+                    return item;
                 });
                 setTimeout(() => {
                     this.getCurrFundValues();
@@ -76,6 +76,7 @@ export default {
                 return res.json();
             }).then(res => {
                 this.list = res.list;
+                this.getCurrFundValues();
             });
         },
     }
