@@ -1,4 +1,4 @@
-#client
+# client
 
 ## NPM
 npm-run-all：执行多个脚本（run-p dev:*）
@@ -9,6 +9,10 @@ npm i webpack-merge
 ## babel
 npm i -D babel-loader @babel/core @babel/preset-env 
 npm i -D @babel/plugin-transform-runtime 
+ - "useBuiltIns": **结合target使用，只polyfill浏览器不支持的**
+    - entry：分解小包import，需手动引入babel/polyfill包
+    - usage：在各文件按需加载，不需手动引入babel/polyfill包
+    
 npm i -S @babel/runtime
 
 ## 作为全局引入，entry （开发环境？）
@@ -18,7 +22,7 @@ npm i -D babel-polyfill
 npm i -S vue
 npm i -D vue-loader vue-template-compiler （`'vue$': 'vue/dist/vue.esm.js'`）
 
-##webpack相关优化
+## webpack相关优化
 cross-env：设置环境变量
 ***
 
