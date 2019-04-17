@@ -2,12 +2,12 @@
   <div id="wrapper">
     <navHeader></navHeader>
     <el-row>
-      <el-col :span="5">
+      <el-col v-if="!isPhone" :span="5">
         <div class="m-user-info">
           <img style="width: 100px;" src="https://haitao.nos.netease.com/9e701a25-1bd8-4ae1-b124-45d1e3d34c4e_700_700.jpeg"/>
         </div>
       </el-col>
-      <el-col :span="19">
+      <el-col :span="contentCol">
         <div class="container">
             <router-view></router-view>
         </div>
@@ -22,7 +22,7 @@
   height: 100px;
   border-radius: 50%;
   background-color: #eee;
-  margin: 10% auto auto auto;
+  margin: 30% auto auto auto;
   overflow: hidden;
 }
 .m-side-menu {
@@ -45,12 +45,19 @@
 import navHeader from './pages/common/navHeader';
 export default {
     name: 'app',
-    props: ['class'],
     components: {
         navHeader
     },
     data: {
+      isPhone: false,
+      contentCol: 24
       // sideNavClass: 'm-side-menu'
+    },
+    created() {
+     this.$eventBus.$on('currAgent', (agent) => {
+       this.isPhone = agent;
+       this.contentCol = agent ? 24 : 19;
+     }); 
     }
 }
 </script>

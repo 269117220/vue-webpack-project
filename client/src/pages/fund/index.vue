@@ -6,6 +6,7 @@
       :row-class-name="tableRowClassName"
       :default-sort = "{prop: 'date', order: 'ascending'}">
       <el-table-column
+        fixed="left"
         prop="name"
         label="名称"
         width="180">
