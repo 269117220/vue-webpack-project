@@ -5,6 +5,7 @@
                 <img class="u-img" src="https://haitao.nos.netease.com/9e701a25-1bd8-4ae1-b124-45d1e3d34c4e_700_700.jpeg" />
             </li>
             <el-menu-item index="1"><a href="#/fund">兴趣爱好</a></el-menu-item>
+            <el-menu-item index="2"><a href="#/info">信息搜集</a></el-menu-item>
         </el-menu>
     </div>
 </template>
@@ -22,6 +23,9 @@
     .u-img {
         height: 85%;
     }
+    a {
+        text-decoration: none;
+    }
 </style>
 
 <script>
@@ -38,8 +42,12 @@ export default {
      }); 
     },
     methods: {
-        handleSelect: function(index) {
-            console.log('nav-header:', index);
+        handleSelect(key) {
+            this.$notify({
+                title: '提示',
+                message: this.$createElement('i', {style: 'color: teal'}, '切换成功'),
+                duration: 1000
+            });
         }
     }
 }

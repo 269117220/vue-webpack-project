@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper">
     <navHeader></navHeader>
-    <el-row>
+    <el-row style="margin:0 8px;">
       <el-col v-if="!isPhone" :span="5">
         <div class="m-user-info">
           <img style="width: 100px;" src="https://haitao.nos.netease.com/9e701a25-1bd8-4ae1-b124-45d1e3d34c4e_700_700.jpeg"/>
@@ -30,7 +30,6 @@
   margin-top: 5%;
 }
 .container {
-    margin-right: 25px;
     background-color: #eee;
     min-height: calc(100% - 80px);
 }

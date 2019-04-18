@@ -1,6 +1,7 @@
 <template>
     <el-table
       :data="list"
+      v-loading="loading"
       style="width: 100%"
       height="90%"
       :row-class-name="tableRowClassName"
@@ -44,6 +45,7 @@
 export default {
     data: function() {
         return {
+            loading: true,
             list: []
         }
     },
@@ -56,8 +58,12 @@ export default {
         },
         getCurrFundValues() {
             fetch('/api/interest/currFundValue').then(res => {
+                this.loading = false;
                 return res.json();
             }).then(res => {
+                if(!this.list) {
+                    throw new Error("获取信息异常！");
+                }
                 this.list = this.list && this.list.map((item = {}) => {
                     res.some(_curItem => {
                         if(_curItem.fundcode == item.fundcode) {
@@ -70,6 +76,8 @@ export default {
                 setTimeout(() => {
                     this.getCurrFundValues();
                 }, 60000);
+            }).catch(err => {
+                this.$message(`${err || '获取信息异常！'}`);                
             });
         },
         getDate: function() {
