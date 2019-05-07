@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const config = require('./config.js');
 
 module.exports = {
-    entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, '../src/index.js')],
+    entry: [path.resolve(__dirname, '../src/index.js')],
     output: {
         path: config.build.assetsRoot,
         filename: 'js/[name].[hash].js',
