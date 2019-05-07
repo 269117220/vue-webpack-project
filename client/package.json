@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production node build/build.js",
-    "dev:client": "cross-env NODE_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "dev:server": "cd ../server && npm run dev",
-    "dev": "run-p dev:*"
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --progress --config build/webpack.dev.conf.js"
   },
   "author": "",
   "license": "ISC",
@@ -29,7 +27,6 @@
     "less-loader": "^4.1.0",
     "less-plugin-clean-css": "^1.5.1",
     "mini-css-extract-plugin": "^0.6.0",
-    "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "ora": "^3.4.0",
     "style-loader": "^0.23.1",
