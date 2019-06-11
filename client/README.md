@@ -1,4 +1,4 @@
-# client
+# 优化&技巧
 
 ## NPM
 `npm-run-all`：执行多个脚本（run-p dev:*）
@@ -62,3 +62,45 @@ css-loader
 style-loader ： 开发环境 
 mini-css-extract-plugin : (抽取css到独立文件) 生产环境 / loader和plugin都要配置 / 和style-loader不同时用
 ```
+- css压缩
+```
+const CleanCSSPlugin = require("clean-css");
+new CleanCSSPlugin({ advanced: true })
+```
+
+# 杂记
+## Vue
+```
+new VueLoaderPlugin()    //最新的vue-loader，需要此插件
+```
+- 扩展：参照extend文件夹
+- 插件：参照lib/plugin文件夹
+
+## webpack
+```
+devServer: {
+    //打开的页面  
+    openPage: 'view/index.html',
+    //server的资源路径
+    contentBase: path.join(__dirname, '../../server/app/public/')
+}
+```
+
+## webpack-dev-server
+```
+/*
+ *服务器访问静态资源是相对于publicPath
+ * 打包的文件存于内存中
+ */
+output: {
+    publicPath: '/'     
+}
+```
+
+## loader
+```
+//例如： less和less-loader
+在less文件加载时，使用less-loader进行加载，其使用less将less样式转换为css，
+故此less和less-loader只需要--save-dev即可。
+```
+
