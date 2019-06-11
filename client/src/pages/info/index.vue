@@ -1,9 +1,11 @@
 <template>
-  <el-carousel :interval="4000" type="card" height="200px">
-    <el-carousel-item v-for="item in 6" :key="item">
-      <h3>{{ item }}</h3>
-    </el-carousel-item>
-  </el-carousel>
+  <layout>
+    <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel-item v-for="item in 6" :key="item">
+        <h3>{{ item }}</h3>
+      </el-carousel-item>
+    </el-carousel>
+  </layout>
 </template>
 
 <style>
@@ -25,11 +27,15 @@
 </style>
 
 <script>
+import layout from 'components/layout';
 export default {
     data: function() {
         return {
             
         }
-    }   
+    },
+    components: {
+        layout
+    },   
 }
 </script>

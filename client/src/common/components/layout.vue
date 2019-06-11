@@ -9,7 +9,7 @@
       </el-col>
       <el-col :span="contentCol">
         <div class="container">
-            <router-view></router-view>
+            <slot></slot>
         </div>
       </el-col>
     </el-row>
@@ -41,16 +41,18 @@
  * import 动态加载
  */
 // import sideMenu from './pages/common/sideMenu';
-import navHeader from './pages/common/navHeader';
+import navHeader from './navHeader';
 export default {
     name: 'app',
     components: {
         navHeader
     },
-    data: {
-      isPhone: false,
-      contentCol: 24
-      // sideNavClass: 'm-side-menu'
+    data() {
+      return {
+        isPhone: false,
+        contentCol: 24
+        // sideNavClass: 'm-side-menu'
+      };
     },
     created() {
      this.$eventBus.$on('currAgent', (agent) => {

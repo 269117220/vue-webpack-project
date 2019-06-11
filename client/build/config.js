@@ -5,7 +5,7 @@ module.exports = {
         // assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         devtool: 'inline-source-map',
-        port: 8889
+        port: 9999
     },
     build: {
         assetsRoot: path.resolve(__dirname, '../../server/app/public'),

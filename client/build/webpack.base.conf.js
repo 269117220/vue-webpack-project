@@ -1,18 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const config = require('./config.js');
+const { getEntries, entryHtmlPlugins, virtulaEntryPlugins} = require('./helpers/util');
 
+let entries = getEntries();
 module.exports = {
-    entry: [path.resolve(__dirname, '../src/index.js')],
+    entry: entries,
     output: {
         path: config.build.assetsRoot,
-        filename: 'js/[name].[hash].js',
-        chunkFilename: 'js/[id].js',
         publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
             : config.dev.assetsPublicPath
@@ -36,15 +34,8 @@ module.exports = {
     },
     plugins: [
         new VueLoaderPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname , '../src/template.html'),
-            filename: './index.html',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: false,
-                removeAttributeQuotes: true
-            }
-        }),
+        ...virtulaEntryPlugins(entries),
+        ...entryHtmlPlugins(entries),
         new webpack.ProvidePlugin({
             
         })
@@ -61,9 +52,15 @@ module.exports = {
             })
         ],
         splitChunks: {
-            chunks: 'all',
             cacheGroups: {
-                
+                default: false,
+                common: {
+                    test: /[\\/]node_modules[\\/]((?!jspdf).)*\.js$/, // 排除 jspdf.debug.js
+                    name: 'common',
+                    chunks: 'all',
+                    minChunks: 2,
+                    enforce: true
+                }
             }
         }
     },
@@ -71,20 +68,8 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': path.resolve(__dirname, '../src')
+            '@': path.resolve(__dirname, '../src'),
+            'components': path.resolve(__dirname, '../src/common/components')
         }
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-

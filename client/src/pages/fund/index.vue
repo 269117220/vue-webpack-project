@@ -1,34 +1,36 @@
 <template>
-    <el-table
-      :data="list"
-      v-loading="loading"
-      style="width: 100%"
-      height="90%"
-      :row-class-name="tableRowClassName"
-      :default-sort = "{prop: 'date', order: 'ascending'}">
-      <el-table-column
-        fixed="left"
-        prop="name"
-        label="名称"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="gsz"
-        sortable
-        label="单位净值"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="oldValues"
-        sortable
-        label="历史增长率">
-      </el-table-column>
-      <el-table-column
-        prop="currValue"
-        sortable
-        label="当前估值">
-      </el-table-column>
-    </el-table>
+    <layout>
+        <el-table
+            :data="list"
+            v-loading="loading"
+            style="width: 100%"
+            height="90%"
+            :row-class-name="tableRowClassName"
+            :default-sort = "{prop: 'date', order: 'ascending'}">
+            <el-table-column
+                fixed="left"
+                prop="name"
+                label="名称"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="gsz"
+                sortable
+                label="单位净值"
+                width="180">
+            </el-table-column>
+            <el-table-column
+                prop="oldValues"
+                sortable
+                label="历史增长率">
+            </el-table-column>
+            <el-table-column
+                prop="currValue"
+                sortable
+                label="当前估值">
+            </el-table-column>
+        </el-table>
+    </layout>
 </template>
 
 <style>
@@ -42,12 +44,16 @@
 </style>
 
 <script>
+import layout from 'components/layout';
 export default {
     data: function() {
         return {
             loading: true,
             list: []
         }
+    },
+    components: {
+        layout
     },
     created: function() {
         this.getDate();
