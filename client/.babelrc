@@ -19,6 +19,12 @@
     "plugins": [
         [
             "@babel/transform-runtime"
+        ],
+        [
+            "extract",
+            {
+                "name": "my_babel_plugin"
+            }
         ]
     ]
 }
