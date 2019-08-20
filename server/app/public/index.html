@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>preload/prefetch</title>
+        <link href="./a.js" rel="preload" as="script" />
+    </head>
+    <script>
+    function fetchFile () {
+        let s = document.createElement('script');
+        s.src="./a.js";
+        document.body.appendChild(s);
+    }
+
+    </script>
+    <body>
+        测试prelod/prefetch
+        <button onclick="fetchFile()">获取文件</button>
+    </body>
+        <script src='./long.js'></script>
+        <script>
+            i=0
+            while(i< 1000){
+                console.log(i++);
+            }
+        </script>
+        <script src="./a.js"></script>
+</html>
