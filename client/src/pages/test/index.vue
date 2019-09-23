@@ -1,6 +1,6 @@
 <template>
   <div>
-    测试require.context();<button @click="getRequire">获取依赖</button>
+    测试require.context();&nbsp;<button @click="getRequire">获取依赖</button>
     <p ref="context">
     </p>
   </div>
